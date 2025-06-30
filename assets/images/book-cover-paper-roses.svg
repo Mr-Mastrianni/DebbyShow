@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600">
+  <!-- Background with olive/green color -->
+  <rect width="400" height="600" fill="#4a5d3a"/>
+  
+  <!-- Decorative pattern -->
+  <defs>
+    <pattern id="leafPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M20 5 Q15 10 20 15 Q25 10 20 5" fill="#5a6d4a" opacity="0.3"/>
+      <path d="M5 20 Q10 15 15 20 Q10 25 5 20" fill="#5a6d4a" opacity="0.3"/>
+      <path d="M35 20 Q30 15 25 20 Q30 25 35 20" fill="#5a6d4a" opacity="0.3"/>
+      <path d="M20 35 Q15 30 20 25 Q25 30 20 35" fill="#5a6d4a" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <rect width="400" height="600" fill="url(#leafPattern)"/>
+  
+  <!-- Title -->
+  <text x="200" y="150" font-family="Georgia, serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#ffffff">
+    PAPER
+  </text>
+  <text x="200" y="230" font-family="Georgia, serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#ffffff">
+    ROSES
+  </text>
+  
+  <!-- Author name -->
+  <rect x="0" y="480" width="400" height="120" fill="#B8956A"/>
+  <text x="200" y="540" font-family="Georgia, serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#ffffff">
+    DEBBY SHOW
+  </text>
+  
+  <!-- Tagline -->
+  <text x="200" y="580" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#ffffff">
+    inspired by a true story
+  </text>
+  
+  <!-- Decorative border -->
+  <rect x="10" y="10" width="380" height="580" fill="none" stroke="#B8956A" stroke-width="2" opacity="0.5"/>
+</svg>

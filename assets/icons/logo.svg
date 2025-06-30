@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Open book base -->
+  <path d="M100 140 L40 120 L40 60 L100 80 L160 60 L160 120 L100 140 Z" fill="#ffffff" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Book pages -->
+  <path d="M100 80 L100 140" stroke="#cccccc" stroke-width="1"/>
+  <path d="M50 65 L50 115 M60 62 L60 118 M70 60 L70 120 M80 60 L80 120 M90 62 L90 118" stroke="#eeeeee" stroke-width="0.5"/>
+  <path d="M110 62 L110 118 M120 60 L120 120 M130 60 L130 120 M140 62 L140 118 M150 65 L150 115" stroke="#eeeeee" stroke-width="0.5"/>
+  
+  <!-- Flowers growing from book -->
+  <!-- Left flower -->
+  <circle cx="60" cy="50" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="60" cy="50" r="3" fill="#ffcc00"/>
+  <path d="M60 58 L60 80" stroke="#ffffff" stroke-width="2"/>
+  <ellipse cx="55" cy="70" rx="4" ry="2" fill="#ffffff" transform="rotate(-30 55 70)"/>
+  
+  <!-- Center flower -->
+  <circle cx="100" cy="40" r="10" fill="#ffffff" opacity="0.9"/>
+  <circle cx="100" cy="40" r="4" fill="#ffcc00"/>
+  <path d="M100 50 L100 80" stroke="#ffffff" stroke-width="2"/>
+  <ellipse cx="95" cy="65" rx="5" ry="2" fill="#ffffff" transform="rotate(-20 95 65)"/>
+  <ellipse cx="105" cy="68" rx="5" ry="2" fill="#ffffff" transform="rotate(20 105 68)"/>
+  
+  <!-- Right flower -->
+  <circle cx="140" cy="50" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="140" cy="50" r="3" fill="#ffcc00"/>
+  <path d="M140 58 L140 80" stroke="#ffffff" stroke-width="2"/>
+  <ellipse cx="145" cy="70" rx="4" ry="2" fill="#ffffff" transform="rotate(30 145 70)"/>
+  
+  <!-- Small decorative stars -->
+  <path d="M75 35 L77 39 L81 39 L78 42 L79 46 L75 43 L71 46 L72 42 L69 39 L73 39 Z" fill="#ffffff" opacity="0.7"/>
+  <path d="M125 35 L127 39 L131 39 L128 42 L129 46 L125 43 L121 46 L122 42 L119 39 L123 39 Z" fill="#ffffff" opacity="0.7"/>
+  
+  <!-- Additional small flowers -->
+  <circle cx="45" cy="45" r="4" fill="#ffffff" opacity="0.6"/>
+  <circle cx="45" cy="45" r="1.5" fill="#ffcc00"/>
+  
+  <circle cx="155" cy="45" r="4" fill="#ffffff" opacity="0.6"/>
+  <circle cx="155" cy="45" r="1.5" fill="#ffcc00"/>
+</svg>

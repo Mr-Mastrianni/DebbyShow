@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Roses - A Gripping Family Drama Novel | Coming August 5, 2025</title>
+    <meta name="description" content="Paper Roses by Debby Show - A gripping family drama about inheritance, identity, and breaking cycles. Inspired by a true story. Coming August 5, 2025. Perfect for readers of The Vanishing Half and Little Fires Everywhere.">
+    <meta name="keywords" content="Paper Roses, Debby Show, family drama, novel, fiction, book, August 2025, inheritance, identity, family secrets, inspired by true story">
+    <meta name="author" content="Debby Show">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Paper Roses - A Gripping Family Drama Novel">
+    <meta property="og:description" content="Some families leave you money. Others leave you scars. Coming August 5, 2025.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://debbyshow.com">
+    <meta property="og:site_name" content="Paper Roses">
+    <meta property="og:image" content="https://debbyshow.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paper Roses - A Gripping Family Drama Novel">
+    <meta name="twitter:description" content="Some families leave you money. Others leave you scars. Coming August 5, 2025.">
+    <meta name="twitter:image" content="https://debbyshow.com/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://debbyshow.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "Paper Roses",
+        "author": {
+            "@type": "Person",
+            "name": "Debby Show"
+        },
+        "genre": "Family Drama Fiction",
+        "datePublished": "2025-08-05",
+        "description": "A gripping, emotionally layered novel about inheritance, identity, and what it takes to finally break the cycle. Inspired by a true story.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Fieldmere Press",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2242 Overlook Drive",
+                "addressLocality": "Walnut Creek",
+                "addressRegion": "CA",
+                "postalCode": "94597"
+            },
+            "email": "torosebud@gmail.com"
+        },
+        "url": "https://debbyshow.com",
+        "image": "https://debbyshow.com/og-image.jpg"
+    }
+    </script>
+    
+    <!-- External Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollToPlugin.min.js"></script>
+
+    <style>
+        :root {
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --accent-red: #dc2626;
+            --accent-gold: #B8956A;
+            --book-green: #4a5d3a;
+            --dark-gray: #1f1f1f;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-black);
+            color: var(--primary-white);
+            overflow-x: hidden;
+        }
+        
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-title, .hero-tagline, .hero-content {
+            opacity: 0;
+        }
+        
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(odd) {
+            animation-delay: -3s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark-gray); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-red); border-radius: 4px; }
+        
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+        }
+        
+        .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        
+        .purchase-btn, .gold-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .gold-btn {
+            background-color: var(--accent-gold);
+            color: white;
+        }
+        
+        .gold-btn:hover {
+            background-color: #9a7a55;
+        }
+        
+        .purchase-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .purchase-btn:hover::before { left: 100%; }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid var(--accent-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateY(0);
+        }
+        .mobile-menu a {
+            font-size: 2rem;
+            margin: 1.5rem 0;
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .card-3d:hover { transform: none; }
+            .desktop-nav { display: none; }
+            .mobile-nav-toggle { display: block; }
+        }
+        @media (min-width: 769px) {
+            .mobile-nav-toggle { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- 3D Canvas Background -->
+    <div id="canvas-container" aria-hidden="true"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="logo-container">
+                    <img src="/assets/icons/logo.svg" alt="Paper Roses logo" class="logo-icon">
+                    <span class="serif-font text-2xl font-bold text-white">Paper Roses</span>
+                </a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#about" class="text-white hover:text-red-600 transition-colors">About the Author</a>
+                    <a href="#chapter-preview" class="text-white hover:text-red-600 transition-colors">Chapter 1: Behind the Eight Ball</a>
+                    <a href="#contact" class="text-white hover:text-red-600 transition-colors">Contact Me</a>
+                    <div class="flex space-x-3 ml-4">
+                        <a href="https://twitter.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://goodreads.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Goodreads">
+                            <i class="fab fa-goodreads"></i>
+                        </a>
+                        <a href="https://reddit.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Reddit">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white text-2xl" aria-label="Open menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="close-menu-button" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close menu">&times;</button>
+        <a href="#about" class="mobile-menu-link">About the Author</a>
+        <a href="#chapter-preview" class="mobile-menu-link">Chapter 1</a>
+        <a href="#contact" class="mobile-menu-link">Contact Me</a>
+        <a href="#purchase" class="mobile-menu-link bg-red-600 px-6 py-3 rounded-full">Pre-Order</a>
+        <div class="flex space-x-4 mt-6">
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 text-2xl" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://goodreads.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 text-2xl" aria-label="Goodreads">
+                <i class="fab fa-goodreads"></i>
+            </a>
+            <a href="https://reddit.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 text-2xl" aria-label="Reddit">
+                <i class="fab fa-reddit"></i>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="floating-element top-20 left-10 w-4 h-4 bg-red-600 rounded-full opacity-60" aria-hidden="true"></div>
+        <div class="floating-element top-40 right-20 w-6 h-6 border-2 border-white rounded-full opacity-40" aria-hidden="true"></div>
+        <div class="floating-element bottom-40 left-20 w-8 h-8 bg-white rounded-full opacity-30" aria-hidden="true"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="hero-title">
+                <h1 class="serif-font text-6xl md:text-8xl font-black mb-4 text-white">
+                    PAPER <span class="text-red-600">ROSES</span>
+                </h1>
+            </div>
+            
+            <div class="hero-tagline">
+                <p class="text-xl md:text-2xl mb-2 text-gray-300">Coming August 5, 2025</p>
+                <p class="text-lg mb-4 text-gray-400 italic">inspired by a true story</p>
+                <h2 class="serif-font text-3xl md:text-4xl font-bold mb-8 text-white italic">
+                    "Some families leave you money.<br>
+                    <span class="text-red-600">Others leave you scars."</span>
+                </h2>
+            </div>
+            
+            <div class="hero-content">
+                <a href="#purchase" class="purchase-btn inline-block bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transform hover:scale-105 transition-all duration-300 mr-4">
+                    Pre-Order Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#chapter-preview" class="gold-btn inline-block px-8 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300">
+                    Download 1st Chapter <i class="fas fa-download ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white text-black">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-12 text-center">About the Novel</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="card-3d bg-gray-100 p-8 rounded-lg shadow-2xl">
+                        <p class="text-lg leading-relaxed mb-6">
+                            Abigail Jones has spent her life trying to be the good daughter—the stable one. But in a family shaped by betrayal, secrets, and reinvention, that's never been enough. Her mother is beautiful and unpredictable. Her father is glittering and dangerous. And her younger sister Nikki, a gifted con artist, has left a trail of shattered lives—and now she's come too close for comfort.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-6">
+                            When Nikki's latest scam hits home, Abigail is forced to face a truth she's long buried: she hasn't escaped the family curse. She's carried it with her all along.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-6">
+                            Woven through their story is Yasmina, the family's former housekeeper—an immigrant from Morocco with her own past to outrun. Silent but steadfast, Yasmina became part of their family in ways none of them could fully see—until it was too late.
+                        </p>
+                        <p class="text-lg leading-relaxed font-semibold">
+                            Spanning continents and generations, <strong>Paper Roses</strong> is a gripping, emotionally layered novel about inheritance, identity, and what it takes to finally break the cycle.
+                        </p>
+                    </div>
+                    <div>
+                        <img src="/assets/images/book-cover-paper-roses.svg" alt="Book cover for Paper Roses by Debby Show" class="rounded-lg shadow-2xl w-full card-3d">
+                    </div>
+                </div>
+
+                <div class="text-center mt-16">
+                    <p class="text-lg italic text-gray-600 mb-4">Perfect for readers of</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <span class="bg-red-600 text-white px-4 py-2 rounded-full">The Vanishing Half</span>
+                        <span class="bg-red-600 text-white px-4 py-2 rounded-full">Little Fires Everywhere</span>
+                        <span class="bg-red-600 text-white px-4 py-2 rounded-full">The Paper Palace</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- What Readers Say Section -->
+    <section id="testimonials" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-12 text-black">What readers say</h2>
+                
+                <div class="card-3d bg-white p-8 rounded-lg shadow-2xl max-w-2xl mx-auto">
+                    <div class="flex justify-center mb-4">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <p class="text-xl italic text-gray-700 mb-4">
+                        "An epic story that blends wisdom, and timeless storytelling."
+                    </p>
+                    <p class="text-lg font-semibold text-gray-900">— Haileh Afra</p>
+                </div>
+                
+                <div class="mt-12">
+                    <a href="#chapter-preview" class="gold-btn inline-block px-8 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300">
+                        View all Chapters
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Author Section -->
+    <section id="author" class="py-20 bg-black text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-12">Meet the Author</h2>
+                
+                <div class="card-3d bg-gray-900 p-8 rounded-lg shadow-2xl flex flex-col md:flex-row items-center gap-8">
+                    <img src="/author-placeholder.jpg" alt="Headshot of author Debby Show" class="w-48 h-48 rounded-full object-cover flex-shrink-0">
+                    <div class="text-left">
+                        <h3 class="serif-font text-3xl font-bold mb-4 text-red-600">Debby Show</h3>
+                        <p class="text-lg leading-relaxed mb-4">
+                            Author Debby Show is a Licensed Marriage and Family Therapist and School Psychologist based in California. With years of experience working with individuals and families, she brings a deep understanding of human behavior, relationships, and generational dynamics to her fiction.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-4">
+                            Though Paper Roses is her debut novel, Debby has honed her craft through coaching, writing workshops and a lifelong passion for storytelling. Inspired by real history and intimate truths, her work explores how the past shapes who we become.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-4">
+                            She also happens to be the sister of a rather infamous public figure—a detail that has made family gatherings interesting, to say the least. While this is a work of fiction, it draws inspiration from real-life experiences. That said, the spotlight in this story belongs to the generations of women whose legacies are woven across time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Chapter Preview Section -->
+    <section id="chapter-preview" class="py-20 bg-white text-black">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-8">Chapter 1: Behind the Eight Ball</h2>
+                <p class="text-lg mb-8 text-gray-600">Get a sneak peek into the world of Paper Roses</p>
+                
+                <div class="card-3d bg-gray-100 p-8 rounded-lg shadow-xl mb-8">
+                    <p class="text-lg leading-relaxed text-left italic">
+                        "The first time I saw my mother steal, I was seven years old. We were in Bloomingdale's,
+                        and she slipped a lipstick into her purse with the same casual grace she used to smooth
+                        my hair. When I opened my mouth to speak, she pressed a finger to her lips and winked..."
+                    </p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/chapter1.pdf" download class="gold-btn inline-block px-8 py-4 rounded-full text-lg font-semibold transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-download mr-2"></i> Download First Chapter
+                    </a>
+                    <a href="#purchase" class="purchase-btn inline-block bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transform hover:scale-105 transition-all duration-300">
+                        Buy Book Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50 text-black">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+                
+                <div class="space-y-8">
+                    <div class="card-3d bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-3">When will Paper Roses be released?</h3>
+                        <p>Paper Roses will be released on August 5, 2025. Pre-orders are available now.</p>
+                    </div>
+                    
+                    <div class="card-3d bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-3">What genre is Paper Roses?</h3>
+                        <p>Paper Roses is a family drama fiction novel that explores themes of inheritance, identity, and breaking generational cycles.</p>
+                    </div>
+                    
+                    <div class="card-3d bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-3">Who would enjoy reading Paper Roses?</h3>
+                        <p>This book is perfect for readers who enjoyed "The Vanishing Half," "Little Fires Everywhere," and "The Paper Palace." It appeals to anyone interested in complex family dynamics and multi-generational storytelling.</p>
+                    </div>
+                    
+                    <div class="card-3d bg-gray-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-3">What makes Paper Roses unique?</h3>
+                        <p>Paper Roses spans continents and generations, weaving together the stories of multiple characters whose lives intersect in unexpected ways. It's an emotionally layered exploration of how family patterns repeat and how they can be broken.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-20 bg-red-600 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-6">Stay Connected</h2>
+                <p class="text-xl mb-8">Subscribe to our monthly newsletter for exclusive updates, behind-the-scenes content, and early access to new releases.</p>
+                
+                <form id="newsletter-form" class="space-y-4">
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" 
+                               class="newsletter-input w-full px-6 py-4 rounded-full text-lg" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-colors transform hover:scale-105">
+                            Subscribe Now <i class="fas fa-envelope ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+                <div id="newsletter-feedback" class="mt-4 text-lg"></div>
+                <p class="text-sm mt-4 opacity-80">
+                    * We respect your privacy. Unsubscribe at any time.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Purchase Section -->
+    <section id="purchase" class="py-20 bg-black text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-12">Get Your Copy</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="card-3d bg-gray-900 p-8 rounded-lg">
+                        <i class="fas fa-book text-4xl text-red-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-4">Hardcover</h3>
+                        <p class="text-gray-300 mb-6">Premium hardcover edition with dust jacket</p>
+                        <a href="https://www.amazon.com/dp/paperroses" target="_blank" rel="noopener" class="purchase-btn bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition-colors inline-block">
+                            Pre-Order $24.99
+                        </a>
+                    </div>
+                    
+                    <div class="card-3d bg-gray-900 p-8 rounded-lg">
+                        <i class="fas fa-tablet-alt text-4xl text-red-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-4">E-Book</h3>
+                        <p class="text-gray-300 mb-6">Digital edition for all devices</p>
+                        <a href="https://www.amazon.com/dp/paperroses-kindle" target="_blank" rel="noopener" class="purchase-btn bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition-colors inline-block">
+                            Pre-Order $12.99
+                        </a>
+                    </div>
+                    
+                    <div class="card-3d bg-gray-900 p-8 rounded-lg">
+                        <i class="fas fa-headphones text-4xl text-red-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-4">Audiobook</h3>
+                        <p class="text-gray-300 mb-6">Professionally narrated audiobook</p>
+                        <a href="https://www.audible.com/pd/paperroses" target="_blank" rel="noopener" class="purchase-btn bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition-colors inline-block">
+                            Pre-Order $19.99
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-lg mb-6">Available at all major bookstores and online retailers</p>
+                    <div class="flex justify-center space-x-6 text-2xl">
+                        <a href="https://www.amazon.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Amazon">
+                            <i class="fab fa-amazon"></i>
+                        </a>
+                        <a href="https://www.barnesandnoble.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Barnes & Noble">
+                            <i class="fas fa-book-open"></i>
+                        </a>
+                        <a href="https://books.apple.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Apple Books">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                        <a href="https://play.google.com/store/books" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Google Play Books">
+                            <i class="fab fa-google-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="serif-font text-4xl md:text-5xl font-bold mb-8">Contact Us</h2>
+                <p class="text-lg mb-8 text-gray-300">
+                    Have questions about Paper Roses? Want to schedule a book club discussion or author event?
+                    We'd love to hear from you.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="card-3d bg-gray-900 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-red-600">Publisher</h3>
+                        <p class="text-lg font-semibold mb-2">Fieldmere Press</p>
+                        <p class="text-gray-300 mb-2">2242 Overlook Drive</p>
+                        <p class="text-gray-300 mb-4">Walnut Creek, CA 94597</p>
+                        <a href="mailto:torosebud@gmail.com" class="text-lg hover:text-red-600 transition-colors">
+                            <i class="fas fa-envelope mr-2"></i> torosebud@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div class="card-3d bg-gray-900 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-red-600">Author</h3>
+                        <p class="text-lg font-semibold mb-4">Debby Show</p>
+                        <div class="flex justify-center space-x-4 text-2xl">
+                            <a href="https://twitter.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://goodreads.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Goodreads">
+                                <i class="fab fa-goodreads"></i>
+                            </a>
+                            <a href="https://reddit.com" target="_blank" rel="noopener" class="text-white hover:text-red-600 transition-colors" aria-label="Reddit">
+                                <i class="fab fa-reddit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="serif-font text-2xl font-bold mb-4">Paper Roses</h3>
+                    <p class="text-gray-400">A gripping family drama by Debby Show</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#author" class="text-gray-400 hover:text-white transition-colors">Author</a></li>
+                        <li><a href="#newsletter" class="text-gray-400 hover:text-white transition-colors">Newsletter</a></li>
+                        <li><a href="#purchase" class="text-gray-400 hover:text-white transition-colors">Purchase</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com/debbyshowauthor" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/debbyshowauthor" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/debbyshowauthor" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.goodreads.com/author/show/123456.Debby_Show" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors" aria-label="Goodreads">
+                            <i class="fab fa-goodreads"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2025 Debby Show. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
