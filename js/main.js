@@ -112,21 +112,30 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const email = this.querySelector('#email').value;
         
-        // Developer Note: Replace this with actual AJAX call to your email service
         newsletterFeedback.textContent = 'Sending...';
-        
-        // Simulate network delay
-        setTimeout(() => {
-            if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                newsletterFeedback.textContent = 'Thank you for subscribing!';
+
+        fetch('/subscribe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            newsletterFeedback.textContent = data.message;
+            if (data.message.includes('Thank you')) {
                 newsletterFeedback.style.color = '#34d399'; // Green color for success
-                this.reset();
+                newsletterForm.reset();
             } else {
-                newsletterFeedback.textContent = 'Please enter a valid email.';
                 newsletterFeedback.style.color = '#f87171'; // Red color for error
             }
-            setTimeout(() => newsletterFeedback.textContent = '', 3000);
-        }, 1000);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            newsletterFeedback.textContent = 'An error occurred. Please try again later.';
+            newsletterFeedback.style.color = '#f87171'; // Red color for error
+        });
     });
     
     // Mouse movement parallax effect

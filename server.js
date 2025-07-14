@@ -1,0 +1,5 @@
+const express = require('express');const bodyParser = require('body-parser');const fs = require('fs');const path = require('path');const app = express();const port = 3000;app.use(bodyParser.json());app.post('/subscribe', (req, res) => {    const { email } = req.body;    if (!email || !/^[^
+@]+@[^
+@]+\.[^
+@]+$/.test(email)) {        return res.status(400).json({ message: 'Invalid email address.' });    }    const emailFilePath = path.join(__dirname, 'subscribers.txt');    const emailEntry = `${new Date().toISOString()} - ${email}
+`;    fs.appendFile(emailFilePath, emailEntry, (err) => {        if (err) {            console.error('Error saving email:', err);            return res.status(500).json({ message: 'Error subscribing. Please try again later.' });        }        console.log('New subscriber:', email);        res.status(200).json({ message: 'Thank you for subscribing!' });    });});app.listen(port, () => {    console.log(`Server listening at http://localhost:${port}`);});
