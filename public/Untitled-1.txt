@@ -1,0 +1,122 @@
+[three.js forum](https://discourse.threejs.org/)
+
+# [Animating pages of a book](https://discourse.threejs.org/t/animating-pages-of-a-book/28883)
+
+[Animating pages of a book](https://discourse.threejs.org/t/animating-pages-of-a-book/28883)
+[Questions](https://discourse.threejs.org/c/questions/6)
+[blender](https://discourse.threejs.org/tag/blender)
+[animation](https://discourse.threejs.org/tag/animation)
+[BraVo](https://discourse.threejs.org/u/BraVo)
+Hi! I want to create 3d book with separate pages where i can manually flip the pages by click on a page. So I created a book with an animated page. I duplicated the page in blender that I have multiple animations, one for each page. I have no idea how to manage the page flips in Three.js. Maybe the approach in blender is also wrong.
+Does anybody has some ideas how I could address or solve it?
+[Lawrence3DPK](https://discourse.threejs.org/u/Lawrence3DPK)
+Do you have an image of the pages?
+[BraVo](https://discourse.threejs.org/u/BraVo)
+Yes, but it’s just a mockup. I’ll make it nice if I have a concept how to do it right. You can see 4 objects. One for the book shelf and objects for each page. Every page actually has it own animation.
+[Bildschirmfoto 2021-08-16 um 09.08.491920×1173 122 KB](https://canada1.discourse-cdn.com/flex035/uploads/threejs/original/3X/e/1/e12e4798044cd53c57878b01643fbcb5103e35f0.jpeg)
+[Morne](https://discourse.threejs.org/u/Morne)
+Hello [@BraVo](https://discourse.threejs.org/u/bravo),
+If your aim is to have a realistic model of an open book with the curved shape instead of just flat planes, then I think you will have to dynamically create the flipped pages at runtime.
+Given my current knowledge, this is how I would attempt to solve your problem.
+I would create the open book in Blender. Then also model two separate “pages” than fit on top of the left and right side of the open book.
+Since those “page” geometries would be simple curved planes, I would cover those geometries with materials in three.js that represent the next and previous pages you want to show. The images could be created dynamically if you use CanvasTexture.
+I would then implement a function that creates the geometry of the page being flipped, given the angle of the flipped page as input argument. This way you can create the geometry of the flipped page as it is being flipped from the right, to the left side of the book (or in this case from say 45 degrees to 135 degrees).
+If the book is lying in the xz-plane, the most tricky part would be to get a function that models the height of the page surface. It would require trial-and-error. Propably a polynomial of the third-order would work.
+Since the geometry of the flipped page would also be a simple plane, I would cover it with a material that contains represents of both sides of the page, and have the material wrap around.
+Alternatively, you could render the flipped page twice and only show the frontside of the one copy and the backside of the other…
+If you wish I can make a mockup in JSFiddle of the basic idea…?
+It would be great to hear how other members of the community might implement this.
+[looeee](https://discourse.threejs.org/u/looeee)
+It would be great to hear how other members of the community might implement this.
+I would animate it in blender probably, I think you could get far more realistic page turning animations that way. However, you would have to tank care in how you created the animation - probably using skeletal animation would be best.
+There are quite a few CC0 books on blendswap, although I don’t know if the animations are suitable for export. But at least you could use the model as a starting point and rebuild your own animations
+[Blend Swap](https://blendswap.com/search?keyword=book%2Banimation)
+
+### [Blend Swap](https://blendswap.com/search?keyword=book%2Banimation)
+
+[Blend Swap](https://blendswap.com/search?keyword=book%2Banimation)
+Create and Share Blender Assets
+[BraVo](https://discourse.threejs.org/u/BraVo)
+[@Morne](https://discourse.threejs.org/u/morne) Thank you for the hint. It’s a good idea. It could work but from my point of view it could have some disadvantages. It would be hard to implement some kind of a realistic page bending. And exchanging the textures on every page flip will potentially take some time.
+[@looeee](https://discourse.threejs.org/u/looeee) My actual idea was to animate it in blender. I’m sure i’ll be able to model some kind of realistic page flips in blender - maybe also with a skeletal animation. It would be potentially the most realistic looking solution. For this case, do you have an idea how to implement the single page flips in Three.js?
+A third idea could be to create a model for a single page in blender including an animation and attach it in three.js to the book model. Then I could create all pages with the right textures on application start to avoid stuttering on page flips. What do you think about this idea?
+[looeee](https://discourse.threejs.org/u/looeee)
+For this case, do you have an idea how to implement the single page flips in Three.js?
+If you’re asking how to export the animation from Blender, I would say you should try exporting some test animations and figure out how to get those to play back in three.js. You should export as glTF and then check out the official examples to see how to load and play animations from glTF models. From there, create your book animation and export it. Just be aware that many ways of animating things in Blender cannot be exported - the safest are simple keyframes (probably not much use for animating a bendy page), skeletal animations, or morph targets.
+[Morne](https://discourse.threejs.org/u/Morne)
+[@looeee](https://discourse.threejs.org/u/looeee) this is a really interesting topic, something I wish I had the time to pursue myself as a learning task.
+Regarding the use of Blender, I know you are right that doing the modelling there would result in most realistic page turning.
+But I had to try anyway. Here is the result. [https://jsfiddle.net/mornejac/p20aot9h/7/](https://jsfiddle.net/mornejac/p20aot9h/7/)
+Not terrific, but better than I expected for a quick try. One would have to do faces for the back of the pages as well and the mathematical model needs a lot of improving…
+[looeee](https://discourse.threejs.org/u/looeee)
+[@Morne](https://discourse.threejs.org/u/morne) nice work! The main issue with this approach will be performance, I expect, as you are calculating everything on the CPU. If you use skinning or morph targets most of the calculation happens on the GPU.
+[Morne](https://discourse.threejs.org/u/Morne)
+Thank you [@looeee](https://discourse.threejs.org/u/looeee) !
+That is a very valid point.
+[Morne](https://discourse.threejs.org/u/Morne)
+[@BraVo](https://discourse.threejs.org/u/bravo) It would be great to see what you finally come up with.
+[BraVo](https://discourse.threejs.org/u/BraVo)
+[@Morne](https://discourse.threejs.org/u/morne) nice work! Thank you.
+Sorry it will take some more time because I’m on holiday. I’ll try the aproach to build all pages with it’s textures and animations in blender and use them as single gltf file for each page in three.js. This aproach looks like a good compromise in flexibility, performance and less code.
+I’ll keep you on track
+[Zachernuk](https://discourse.threejs.org/u/Zachernuk)
+I found this page looking for the same thing! I ended up modifying the SkinnedMesh example from the documentation to bend a plane here, it’s got the foundation for controlling the ribbons as pages:
+[GlifTek](https://discourse.threejs.org/u/GlifTek)
+Hi, One tip: I wouldn’t animate EVERY page, just one, and update the texture for whichever page needs to be displayed on it, then re-use this process. At the last frame, if need be, add /subtract a “paper’s percentage” thickness from the left and right page “stacks”.
+[Help with 3d Book rotation](https://discourse.threejs.org/t/help-with-3d-book-rotation/69003/3)
+[Morne](https://discourse.threejs.org/u/Morne)
+[@Zachernuk](https://discourse.threejs.org/u/zachernuk) how hypnotic this is to look at! Very well done.
+[Zachernuk](https://discourse.threejs.org/u/Zachernuk)
+
+### [Blend Swap](https://blendswap.com/search?keyword=book%2Banimation)
+I’ve got a video and link to the interactive version of the book I ended up making here: [https://twitter.com/zachernuk/status/1464699404586151938](https://twitter.com/zachernuk/status/1464699404586151938) I’m able to use only four pages/ textures at a time, and would be able to get away with recycling two of them if the performance of the re-render mattered, but it performs well enough so far!
+[D13](https://discourse.threejs.org/u/D13)
+Nice work!
+
+### Related topics
+[Help with 3d Book rotation](https://discourse.threejs.org/t/help-with-3d-book-rotation/69003)
+[Questions](https://discourse.threejs.org/c/questions/6)
+[geometry](https://discourse.threejs.org/tag/geometry)
+[animation](https://discourse.threejs.org/tag/animation)
+[Animating a flexible object](https://discourse.threejs.org/t/animating-a-flexible-object/6906)
+[Questions](https://discourse.threejs.org/c/questions/6)
+[rigging](https://discourse.threejs.org/tag/rigging)
+[animation](https://discourse.threejs.org/tag/animation)
+[How to control two plane's order even they have the same z-index](https://discourse.threejs.org/t/how-to-control-two-planes-order-even-they-have-the-same-z-index/81821)
+[Questions](https://discourse.threejs.org/c/questions/6)
+[Z-fighing for flip book](https://discourse.threejs.org/t/z-fighing-for-flip-book/79309)
+[Questions](https://discourse.threejs.org/c/questions/6)
+[Flip page with the hole in it](https://discourse.threejs.org/t/flip-page-with-the-hole-in-it/15277)
+[Questions](https://discourse.threejs.org/c/questions/6)
+[animation](https://discourse.threejs.org/tag/animation)
+- 
+
+          [Home](https://discourse.threejs.org/)
+
+
+- 
+
+          [Categories](https://discourse.threejs.org/categories)
+
+
+- 
+
+          [Guidelines](https://discourse.threejs.org/guidelines)
+
+
+- 
+
+            [Terms of Service](https://discourse.threejs.org/tos)
+
+
+- 
+
+            [Privacy Policy](https://discourse.threejs.org/privacy)
+
+
+[Home](https://discourse.threejs.org/)
+[Categories](https://discourse.threejs.org/categories)
+[Guidelines](https://discourse.threejs.org/guidelines)
+[Terms of Service](https://discourse.threejs.org/tos)
+[Privacy Policy](https://discourse.threejs.org/privacy)
+Powered by [Discourse](https://www.discourse.org), best viewed with JavaScript enabled
