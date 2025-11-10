@@ -8,6 +8,21 @@ const DEFAULT_PORT = 3000;
 const port = process.env.PORT || DEFAULT_PORT;
 
 app.use(bodyParser.json());
+
+// Domain redirect middleware - redirect debbieshow.com to debbyshow.com
+app.use((req, res, next) => {
+    const host = req.get('host');
+    
+    // If the request is from debbieshow.com, redirect to debbyshow.com
+    if (host && (host.includes('debbieshow.com') || host.includes('www.debbieshow.com'))) {
+        const protocol = req.protocol;
+        const newHost = host.replace('debbieshow.com', 'debbyshow.com');
+        return res.redirect(301, `${protocol}://${newHost}${req.originalUrl}`);
+    }
+    
+    next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/subscribe', (req, res) => {
