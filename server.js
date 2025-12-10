@@ -59,11 +59,11 @@ function startServer(currentPort) {
                 console.error(`Max port attempts (${MAX_PORT_ATTEMPTS}) reached. Please free up port ${currentPort} or specify a different port.`);
                 process.exit(1);
             }
-            
+
             console.error(`Port ${currentPort} is already in use`);
             const newPort = currentPort + 1;
             console.log(`Attempting to use port ${newPort} instead...`);
-            
+
             // Close previous server instance
             server.close(() => {
                 startServer(newPort);
